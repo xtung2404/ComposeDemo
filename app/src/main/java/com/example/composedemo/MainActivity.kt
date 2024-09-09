@@ -49,7 +49,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.composedemo.screen.signInScreen
 import com.example.composedemo.screen.signUpScreen
+import com.example.composedemo.screen.splashScreen
 import com.example.composedemo.ui.theme.ComposeDemoTheme
+import kotlin.math.sign
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,13 +76,19 @@ fun AppNavigation() {
         composable("signIn") {
             signInScreen(toSignUp = {
                 navController.navigate("signUp")
-
+            }, toLocation = {
+                navController.navigate("location")
             })
         }
         composable("signUp") {
             signUpScreen(onSignUpClick = {
 
             }, toSignIn = {
+                navController.navigate("signIn")
+            })
+        }
+        composable("splash") {
+            splashScreen(toSignIn = {
                 navController.navigate("signIn")
             })
         }
@@ -91,6 +99,8 @@ fun AppNavigation() {
 @Composable
 fun GreetingPreview() {
     ComposeDemoTheme {
+        splashScreen {
 
+        }
     }
 }

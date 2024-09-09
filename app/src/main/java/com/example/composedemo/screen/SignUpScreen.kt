@@ -4,6 +4,7 @@ import android.graphics.drawable.Icon
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,11 +21,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -33,18 +37,22 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composedemo.R
 import com.example.composedemo.component.setSpace
+import com.example.composedemo.ui.theme.ComposeDemoTheme
+import com.example.composedemo.ui.theme.DARK_BLUE
 import com.example.composedemo.ui.theme.GREY
+import com.example.composedemo.ui.theme.ORANGE
 
 @Composable
 fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(GREY)
+            .background(DARK_BLUE)
             .padding(8.dp, 0.dp),
         verticalArrangement = Arrangement.Center,
 
@@ -65,9 +73,9 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
             mutableStateOf("")
         }
         Text(
-            text = "Sign up",
+            text = stringResource(id = R.string.sign_up),
             fontSize = 30.sp,
-            color = Color.Black,
+            color = Color.White,
             fontWeight = FontWeight.Bold
         )
 
@@ -80,14 +88,6 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
             color = Color.Gray)
 
         setSpace(size = 24)
-
-        Text(
-            text = stringResource(id = R.string.full_name),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Light,
-            color = Color.Gray)
-
-        setSpace(size = 4)
 
         OutlinedTextField(
             value = username,
@@ -109,18 +109,13 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
                 color = Color.Black,
                 fontSize = 16.sp
             ),
+            colors = TextFieldDefaults.colors(
+                contentColorFor(backgroundColor = Color.White)
+            ),
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = Color.White)
+
         )
-
-        setSpace(size = 4)
-
-        Text(
-            text = stringResource(id = R.string.email),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Light,
-            color = Color.Gray)
 
         setSpace(size = 8)
 
@@ -130,13 +125,13 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
                 email = it
             },
             placeholder = {
-                Text(text = "email...")
+                Text(text = stringResource(id = R.string.email))
             },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Email,
                     contentDescription = "Example Icon",
-                    tint = Color.Gray // Optional: Change icon color
+                    tint = Color.Gray
                 )
 
             },
@@ -144,20 +139,15 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
                 color = Color.Black,
                 fontSize = 16.sp
             ),
+            colors = TextFieldDefaults.colors(
+                contentColorFor(backgroundColor = Color.White)
+            ),
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = Color.White)
+
         )
 
-        setSpace(size = 4)
-
-        Text(
-            text = stringResource(id = R.string.phone_number),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Light,
-            color = Color.Gray)
-
-        setSpace(size = 4)
+        setSpace(size = 8)
 
         OutlinedTextField(
             value = "",
@@ -165,7 +155,7 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
                 phoneNumber = it
             },
             placeholder = {
-                Text(text = "phone number...")
+                Text(text = stringResource(id = R.string.phone_number))
             },
             leadingIcon = {
                 Icon(
@@ -179,20 +169,15 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
                 color = Color.Black,
                 fontSize = 16.sp
             ),
+            colors = TextFieldDefaults.colors(
+                contentColorFor(backgroundColor = Color.White)
+            ),
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = Color.White)
+
         )
 
-        setSpace(size = 4)
-
-        Text(
-            text = stringResource(id = R.string.password),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Light,
-            color = Color.Gray)
-
-        setSpace(size = 4)
+        setSpace(size = 8)
 
         OutlinedTextField(
             value = password,
@@ -208,16 +193,19 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
 
             },
             placeholder = {
-                Text(text = "Password")
+                Text(text = stringResource(id = R.string.password))
             },
             textStyle = TextStyle(
                 color = Color.Black,
                 fontSize = 16.sp
             ),
+            colors = TextFieldDefaults.colors(
+                contentColorFor(backgroundColor = Color.White)
+            ),
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White)
+
 
         )
 
@@ -225,43 +213,59 @@ fun signUpScreen(onSignUpClick: () -> Unit, toSignIn: () -> Unit) {
 
         Button(
             onClick = {
-                      onSignUpClick.invoke()
+
             },
-            colors = ButtonDefaults.buttonColors(
-                contentColor = Color.White,
-                containerColor = Color.Blue
-            ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(4.dp)
-        ) {
-            Text(
-                text = "Sign up",
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                .align(Alignment.End),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = ORANGE
             )
+        ) {
+            Box(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(id = R.string.sign_up),
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
         }
 
-        Row (
-            modifier = Modifier.fillMaxWidth(),
+        setSpace(size = 8)
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Already have an account? ",
+                text = stringResource(id = R.string.already_have_account),
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Light,
-                color = Color.Gray)
+                color = Color.Gray
+            )
 
             Text(
-                text = "Sign in",
+                text = stringResource(id = R.string.sign_in),
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Light,
-                color = Color.Blue,
+                color = ORANGE,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier.clickable {
                     toSignIn.invoke()
                 })
+        }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun signUpPreview() {
+    ComposeDemoTheme {
+        signUpScreen(onSignUpClick = {  }) {
+            
         }
     }
 }

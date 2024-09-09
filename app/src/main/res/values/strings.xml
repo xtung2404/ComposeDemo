@@ -1,10 +1,19 @@
 <resources>
-    <string name="app_name">ComposeDemo</string>
+    <string name="app_name">NotePlus</string>
     <string name="sign_in">Sign in</string>
-    <string name="sign_up">Sign in</string>
+    <string name="sign_up">Sign up</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password</string>
+    <string name="already_have_account">Already have an account? </string>
     <string name="phone_number">Phone number</string>
     <string name="full_name">Full name</string>
+    <string name="location_list">Danh sách địa điểm</string>
+    <string name="app_slogan">Create and \ndesign \nyour notes
+        \neasily</string>
+    <string name="get_started">Get Started</string>
+    <string name="please_insert_your_information">Please insert your information.</string>
+    <string name="your_notes">Your notes</string>
+    <string name="my_notes">My notes</string>
+    <string name="search">Search</string>
 </resources>
